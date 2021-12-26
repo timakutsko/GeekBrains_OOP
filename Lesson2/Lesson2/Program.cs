@@ -6,17 +6,16 @@ namespace Lesson2
     {
         static void Main(string[] args)
         {
-            BankAccaunt bAcc_1 = new BankAccaunt();
-            _ = bAcc_1.Print;
+            BankAccaunt bAcc_1 = new BankAccaunt(0);
+            bAcc_1.PrintAccaunt();
+            bAcc_1.TransactionAdd(75);
+            bAcc_1.TransactionTakeAway(150);
+            Console.WriteLine(new string('\uFF3F', Console.WindowWidth));
 
-            BankAccaunt bAcc_2 = new BankAccaunt(555);
-            _ = bAcc_2.Print;
-
-            BankAccaunt bAcc_3 = new BankAccaunt(AccauntType.Savings);
-            _ = bAcc_3.Print;
-
-            BankAccaunt bAcc_4 = new BankAccaunt(666, AccauntType.Savings);
-            _ = bAcc_4.Print;
+            BankAccaunt bAcc_2 = new BankAccaunt(100);
+            bAcc_2.PrintAccaunt();
+            bAcc_2.TransactionAdd(75);
+            bAcc_2.TransactionTakeAway(150);
         }
     }
 }
