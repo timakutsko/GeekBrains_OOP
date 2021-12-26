@@ -19,46 +19,23 @@ namespace Lesson2
         private int _balance;
         private AccauntType _type;
 
-        public uint Id
+        public BankAccaunt() : this(0, AccauntType.Budget)
         {
-            get
-            {
-                return _id;
-            }
-            set
-            {
-                string strId = value.ToString();
-                if(strId.Length < 8 || strId.Length > 8)
-                {
-                    _id = 0;
-                    Console.WriteLine("Номер счета содержит 8 символов!");
-                }
-                _id = value;
-            }
         }
 
-        public int Balance
+        public BankAccaunt(int Balance) : this(Balance, AccauntType.Budget)
         {
-            get
-            {
-                return _balance;
-            }
-            set
-            {
-                _balance = value;
-            }
         }
 
-        public AccauntType AccauntType
+        public BankAccaunt(AccauntType AccType) : this(0, AccType)
         {
-            get
-            {
-                return _type;
-            }
-            set
-            {
-                _type = value;
-            }
+        }
+
+        public BankAccaunt(int Balance, AccauntType AccType)
+        {
+            this.GenerateId();
+            _balance = Balance;
+            _type = AccType;
         }
 
         public void PrintAccaunt()
@@ -72,7 +49,7 @@ namespace Lesson2
         {
             Random rand = new Random();
             uint autoId = (uint)rand.Next(10000000, 99999999);
-            Id = autoId;
+            _id = autoId;
         }
 
     }
