@@ -19,6 +19,31 @@ namespace Lesson2
         private int _balance;
         private AccauntType _type;
 
+        public uint Id
+        {
+            get
+            {
+                Random rand = new Random();
+                uint autoId = (uint)rand.Next(10000000, 99999999);
+                return _id = autoId;
+            }
+            set
+            {
+                _id = value;
+            }
+        }
+
+        public uint Print
+        {
+            get
+            {
+                Console.WriteLine($"Id счета: {_id}");
+                Console.WriteLine($"Баланс счета: {_balance}");
+                Console.WriteLine($"Тип счета: {_type}");
+                return 1;
+            }
+        }
+
         public BankAccaunt() : this(0, AccauntType.Budget)
         {
         }
@@ -33,23 +58,9 @@ namespace Lesson2
 
         public BankAccaunt(int Balance, AccauntType AccType)
         {
-            this.GenerateId();
+            _ = this.Id;
             _balance = Balance;
             _type = AccType;
-        }
-
-        public void PrintAccaunt()
-        {
-            Console.WriteLine($"Id счета: {_id}");
-            Console.WriteLine($"Баланс счета: {_balance}");
-            Console.WriteLine($"Тип счета: {_type}");
-        }
-
-        public void GenerateId()
-        {
-            Random rand = new Random();
-            uint autoId = (uint)rand.Next(10000000, 99999999);
-            _id = autoId;
         }
 
     }
