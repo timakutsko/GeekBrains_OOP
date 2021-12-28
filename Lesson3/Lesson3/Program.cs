@@ -106,6 +106,12 @@ namespace Lesson3
             BankAccaunt bAcc_1 = new BankAccaunt(1000);
             BankAccaunt bAcc_2 = new BankAccaunt(2000);
 
+            bAcc_1.PrintAccaunt();
+            bAcc_2.PrintAccaunt();
+
+            Console.WriteLine("После перевода:");
+            Console.WriteLine();
+
             bAcc_1.TransactionTo(ref bAcc_2, 500);
             Console.WriteLine("Второй счет:");
             bAcc_2.PrintAccaunt();
