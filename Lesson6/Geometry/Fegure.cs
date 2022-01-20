@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Geometry
 {
@@ -12,18 +8,12 @@ namespace Geometry
         Red,
         Black
     }
-    internal class Fegure
+    internal abstract class Fegure
     {
-        private Color _color;
-        private static bool _hide;
-        private int _x = 0;
-        private int _y = 0;
-
-        public Fegure(Color col)
-        {
-            _color = col;
-            _hide = false;
-        }
+        protected Color _color;
+        protected bool _hide;
+        protected int _x = 0;
+        protected int _y = 0;
 
         public Color Color 
         { 
@@ -62,9 +52,12 @@ namespace Geometry
 
         public void ActualStatus()
         {
-            Console.WriteLine($"Цвет: {_color};\nВидимость: {this.IsHiden()};\nКоординаты: X - {_x}, Y - {_y}");
+            Console.WriteLine(GetType().Name);
+            Console.WriteLine($"Цвет: {_color};\nВидимость: {this.IsHiden()};\nКоординаты: X - {_x}, Y - {_y};\nПлощадь: {Square()}");
             Console.WriteLine(new string('\u2550', Console.WindowWidth));
         }
-        
+
+        public abstract int Square();
+
     }
 }

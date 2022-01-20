@@ -1,20 +1,28 @@
-﻿using System;
-
-namespace Geometry
+﻿namespace Geometry
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Fegure fegure = new Fegure(Color.Black);
-            fegure.ActualStatus();
-            fegure.Move(10, 0);
-            fegure.ChangeColor(Color.Red);
-            fegure.ActualStatus();
+            Point point = new Point(Color.Black);
+            point.ActualStatus();
+            
+            point.Move(10, 23);
+            point.ChangeColor(Color.Red);
+            point.Hide = true;
+            point.ActualStatus();
 
-            Point point = new Point(Color.White);
+            Circle circle = new Circle(Color.Red, 12);
+            circle.ActualStatus();
+            circle.Move(20, 20);
+            circle.Hide = true;
+            circle.ActualStatus();
 
-
+            Rectangle rectangle = new Rectangle(Color.White, 10, 20);
+            rectangle.ActualStatus();
+            rectangle.Move(50, 40);
+            rectangle.ChangeColor(Color.Red);
+            rectangle.ActualStatus();
             
         }
     }

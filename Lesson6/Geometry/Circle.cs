@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Geometry
+﻿namespace Geometry
 {
-    class Circle : Point
+    internal sealed class Circle : Point
     {
-        public Circle(Color col) : base(col)
+        private int _diameter = 0;
+
+        public Circle(Color col, int diam) : base(col)
         {
+            _diameter = diam;
         }
+
+        public override int Square() => _diameter * _diameter;
     }
 }
