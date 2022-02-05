@@ -1,48 +1,103 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Collections;
 using KTS.FileManager.Core;
+using KTS.FileManager.Data;
 
-namespace KTS.FileManager.Data
+namespace KTS.FileManager.Runner
 {
-    internal class ConsoleForm : IUserForm
+    internal sealed class ConsoleForm : UserForm
     {
-        public void MakeInfluence(IFileInfluence fileInfluence)
+
+        public override string CurrentPath
         {
-            throw new NotImplementedException();
+            get
+            {
+                return _currentPath;
+            }
+            set
+            {
+                string checkedPath = PathChecker.Check(value);
+                _currentPath = checkedPath;
+            }
         }
 
-        public string Show(int width, int height)
+        public override void ShowWindow(int width, int height)
         {
-            Console.SetWindowSize(width, height);
-            Console.WriteLine(new string('\u2550', width));
+            Width = width;
+            Height = height;
+            Console.SetWindowSize(Width, Height);
+            ColorWrite("Для завершения работы с программой - нажми", "<Ctrl+C>");
+            Console.WriteLine();
+            Console.CancelKeyPress += new ConsoleCancelEventHandler(myHandler);
+            ColorWrite("Введи корневую папку: ");
+            CurrentPath = Console.ReadLine();
+            Console.Clear();
+            Console.CancelKeyPress -= new ConsoleCancelEventHandler(myHandler);
+        }
+
+        public override string ShowWindowMenu()
+        {
+            Console.Clear();
+            Console.CancelKeyPress += new ConsoleCancelEventHandler(myHandler);
+            ColorWrite("Текущая папка: ", $"{CurrentPath}");
+            Console.WriteLine();
+            ColorWrite("Для завершения работы с программой - нажми", "<Ctrl+C>");
+            Console.WriteLine();
+            Console.WriteLine(new string('\u2550', Width));
             Console.ForegroundColor = ConsoleColor.Red;
             ColorWrite("Список доступных функций:");
             Console.WriteLine();
-            ColorWrite("Содержимое папки", "Dir");
-            ColorWrite("Создать папку/файл", "CrI");
-            ColorWrite("Удалить папку/файл", "DlI");
-            ColorWrite("Копировать папку/файл", "CpI");
+            ColorWrite("Показать содержимое папки, и перейти в неё", "Dir; ");
+            ColorWrite("Создать папку/файл", "CrI; ");
+            ColorWrite("Удалить папку/файл", "DlI; ");
+            ColorWrite("Копировать папку/файл", "CpI; ");
             Console.WriteLine();
-            ColorWrite("Перенести папку/файл", "RmI");
-            ColorWrite("Переименовать папку/файл", "RnI");
-            ColorWrite("Узнать информацию о папке/файле", "InI");
-            ColorWrite("Поиск по маске файлов", "FbM");
+            ColorWrite("Перенести папку/файл", "RmI; ");
+            ColorWrite("Переименовать папку/файл", "RnI; ");
+            ColorWrite("Узнать информацию о папке/файле", "InI; ");
+            ColorWrite("Поиск по маске файлов", "FbM; ");
             Console.WriteLine();
-            ColorWrite("Получить статические данные текстового файла", "SdI");
-            ColorWrite("Выход", "Ext");
+            ColorWrite("Получить статические данные текстового файла", "SdI; ");
+            ColorWrite("Выход", "Ext.");
             Console.WriteLine();
             Console.WriteLine();
-            Console.WriteLine(new string('\u2550', width));
+            Console.WriteLine(new string('\u2550', Width));
             ColorWrite("Введи команду: ");
             return Console.ReadLine();
         }
 
-        public void ShowInfo(IFileInfo fileInfo)
+        public override string ShowInfo(IUserCommand command)
         {
-            throw new NotImplementedException();
+            ColorWrite(command.Info);
+            return Console.ReadLine();
+        }
+
+        public override void ShowResult(IEnumerable results)
+        {
+            Console.Clear();
+            foreach (string result in results)
+            {
+                ColorWrite(result);
+                Console.WriteLine();
+            }
+            Console.WriteLine("Нажми <Enter>, чтобы продолжить.");
+            Console.ReadLine();
+            Console.Clear();
+        }
+
+        public override void ShowError(string str)
+        {
+            ColorWrite(str);
+            Console.WriteLine();
+            Console.WriteLine("Нажми <Enter>, чтобы повторить ввод.");
+            Console.ReadLine();
+        }
+
+        public override string ShowEvantMessage(string str)
+        {
+            ColorWrite(str);
+            ConsoleKeyInfo userKey = Console.ReadKey();
+            return userKey.Key.ToString();
         }
 
         /// <summary>
@@ -66,7 +121,17 @@ namespace KTS.FileManager.Data
             Console.ForegroundColor = ConsoleColor.Green;
             Console.Write($"{comm}");
             Console.ResetColor();
-            Console.Write("; ");
+        }
+
+        private void myHandler(object sender, ConsoleCancelEventArgs args)
+        {
+            {
+                if (args.SpecialKey == ConsoleSpecialKey.ControlC)
+                {
+                    ColorWrite("ЗАВЕРШЕНО!");
+                    Environment.Exit(0);
+                }
+            }
         }
     }
 }

@@ -7,7 +7,7 @@ using KTS.FileManager.Core;
 
 namespace KTS.FileManager.Data
 {
-    public class FileInfo : IFileInfo
+    public sealed class CommandFileInfo : IFileInfo
     {
         public IReadOnlyList<string> ShowItems(string path)
         {

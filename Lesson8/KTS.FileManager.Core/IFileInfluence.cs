@@ -1,6 +1,4 @@
-﻿using System.IO;
-
-namespace KTS.FileManager.Core
+﻿namespace KTS.FileManager.Core
 {
     public interface IFileInfluence
     {

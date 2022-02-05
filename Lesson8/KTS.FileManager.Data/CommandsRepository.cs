@@ -4,16 +4,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using KTS.FileManager.Core;
+using KTS.FileManager.Data.Commands;
 
 namespace KTS.FileManager.Data
 {
     public sealed class CommandsRepository
     {
         private readonly IReadOnlyDictionary<int, IUserCommand> _index;
-
-        public CommandsRepository(IReadOnlyCollection<IUserCommand> command)
+        public readonly IReadOnlyCollection<IUserCommand> Commands = new List<IUserCommand>()
         {
-            _index = command.ToDictionary(c => c.Type, c => c) ;
+            new CommandCreate(),
+            new CommandDirectory(),
+            new CommandCopy(),
+            new CommandDelete(),
+            new CommandRemove()
+        };
+
+        public CommandsRepository()
+        {
+            _index = Commands.ToDictionary(c => c.Type, c => c) ;
         }
         private IUserCommand GetByType(int type)
         {

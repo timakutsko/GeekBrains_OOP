@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections;
 
 namespace KTS.FileManager.Core
 {
@@ -22,6 +18,9 @@ namespace KTS.FileManager.Core
 
     public interface IUserCommand
     {
+        public string Info { get; }
         public int Type { get; }
+        public string Name { get; }
+        public IList Execute(UserForm form, string pivot);
     }
 }
