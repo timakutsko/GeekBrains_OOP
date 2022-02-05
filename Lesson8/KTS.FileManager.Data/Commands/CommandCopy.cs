@@ -1,6 +1,6 @@
 ﻿namespace KTS.FileManager.Data.Commands
 {
-    internal class CommandCopy : CopyRemoveExecute, Core.IUserCommand
+    sealed class CommandCopy : CopyRemoveExecute, Core.IUserCommand
     {
         public int Type
         {

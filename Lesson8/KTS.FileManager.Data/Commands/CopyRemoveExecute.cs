@@ -4,7 +4,7 @@ using System.IO;
 
 namespace KTS.FileManager.Data.Commands
 {
-    public class CopyRemoveExecute
+    internal class CopyRemoveExecute
     {
         private string _currentCommand;
         

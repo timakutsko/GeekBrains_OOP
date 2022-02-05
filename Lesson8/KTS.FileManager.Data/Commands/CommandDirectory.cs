@@ -3,7 +3,7 @@ using System.Collections;
 
 namespace KTS.FileManager.Data.Commands
 {
-    public sealed class CommandDirectory : Core.IUserCommand
+    sealed class CommandDirectory : Core.IUserCommand
     {
         public int Type
         {

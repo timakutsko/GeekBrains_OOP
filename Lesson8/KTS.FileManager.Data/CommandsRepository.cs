@@ -17,6 +17,7 @@ namespace KTS.FileManager.Data
             new CommandDirectory(),
             new CommandCopy(),
             new CommandDelete(),
+            new CommandFindByMask(),
             new CommandRemove()
         };
 

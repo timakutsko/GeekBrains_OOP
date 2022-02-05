@@ -53,13 +53,7 @@ namespace KTS.FileManager.Runner
             ColorWrite("Копировать папку/файл", "CpI; ");
             Console.WriteLine();
             ColorWrite("Перенести папку/файл", "RmI; ");
-            ColorWrite("Переименовать папку/файл", "RnI; ");
-            ColorWrite("Узнать информацию о папке/файле", "InI; ");
-            ColorWrite("Поиск по маске файлов", "FbM; ");
-            Console.WriteLine();
-            ColorWrite("Получить статические данные текстового файла", "SdI; ");
-            ColorWrite("Выход", "Ext.");
-            Console.WriteLine();
+            ColorWrite("Поиск по маске файлов", "FbM. ");
             Console.WriteLine();
             Console.WriteLine(new string('\u2550', Width));
             ColorWrite("Введи команду: ");

@@ -4,7 +4,7 @@ using System.Collections;
 
 namespace KTS.FileManager.Data.Commands
 {
-    public sealed class CommandCreate : Core.IUserCommand
+    sealed class CommandCreate : Core.IUserCommand
     {
         public int Type
         {

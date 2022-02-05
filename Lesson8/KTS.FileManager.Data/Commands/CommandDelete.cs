@@ -4,7 +4,7 @@ using System.IO;
 
 namespace KTS.FileManager.Data.Commands
 {
-    internal class CommandDelete : Core.IUserCommand
+    sealed class CommandDelete : Core.IUserCommand
     {
         public int Type
         {
